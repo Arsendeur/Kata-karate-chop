@@ -1,4 +1,5 @@
 import main.KarateChop;
+import org.junit.Before;
 import org.junit.Test;
 
 import static junit.framework.Assert.assertEquals;
@@ -11,25 +12,33 @@ import static junit.framework.Assert.assertEquals;
  * To change this template use File | Settings | File Templates.
  */
 public class TestKarateChop {
+    private KarateChop unKarateChop;
+
+    @Before
+    public void initialiserLesObjects()
+    {
+        unKarateChop = new KarateChop();
+    }
 
     @Test
     public void retourneNombreNegatifSiLeTableauEstVide()
     {
-        KarateChop unKarateChop = new KarateChop();
         assertEquals(-1, unKarateChop.TrouverIndex(1, new int[]{}));
     }
 
     @Test
     public void retourneNombreNegatifSiLeNombreRechercheNEstPasDansLeTableau()
     {
-        KarateChop unKarateChop = new KarateChop();
         assertEquals(-1, unKarateChop.TrouverIndex(3, new int[]{1, 2, 4, 5}));
     }
 
     @Test
-    public void peutRetournerLIndex2()
+    public void peutRetournerLeBonIndex()
     {
-        KarateChop unKarateChop = new KarateChop();
-        assertEquals(-1, unKarateChop.TrouverIndex(4, new int[]{1, 2, 4, 5, 7, 9}));
+        assertEquals(2, unKarateChop.TrouverIndex(4, new int[]{1, 2, 4, 5, 7, 9}));
+        assertEquals(5, unKarateChop.TrouverIndex(9, new int[]{1, 2, 4, 5, 7, 9}));
+        assertEquals(3, unKarateChop.TrouverIndex(5, new int[]{1, 2, 3, 5, 7, 9, 10}));
+        assertEquals(1, unKarateChop.TrouverIndex(2, new int[]{1, 2, 4, 5, 7, 9, 10, 19}));
+        assertEquals(0, unKarateChop.TrouverIndex(1, new int[]{1, 2, 4, 5, 7, 9, 10, 19}));
     }
 }

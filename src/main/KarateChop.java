@@ -14,27 +14,32 @@ import java.util.Arrays;
 public class KarateChop {
 
     public int TrouverIndex(int numeroATrouver, int[] tableauOrdonne) {
-        return ChopRecursive(numeroATrouver, tableauOrdonne, 0);
-    }
 
-    private int ChopRecursive(int numeroATrouver, int[] tableauOrdonne, int position)
-    {
         if (tableauOrdonne.length == 0)
             return -1;
 
-        if (tableauOrdonne.length == 1)
-            if (tableauOrdonne[0] == numeroATrouver)
-                return position;
+        int positionMilieu = 0;
+        int position = 0;
+        while (tableauOrdonne.length > 0)
+        {
+            if (tableauOrdonne.length == 1)
+                if (tableauOrdonne[0] == numeroATrouver)
+                    return position;
+                else
+                    return -1;
+
+            positionMilieu = tableauOrdonne.length / 2;
+            if (tableauOrdonne[positionMilieu] > numeroATrouver)
+            {
+                tableauOrdonne = Arrays.copyOfRange(tableauOrdonne, 0, positionMilieu);
+            }
             else
-                return -1;
+            {
+                tableauOrdonne =   Arrays.copyOfRange(tableauOrdonne, positionMilieu, tableauOrdonne.length);
+                position += positionMilieu;
+            }
 
-        int positionMilieu = tableauOrdonne.length / 2;
-        if (tableauOrdonne[positionMilieu] > numeroATrouver)
-            ChopRecursive(numeroATrouver, Arrays.copyOfRange(tableauOrdonne, 0, positionMilieu), position);
-        else
-            ChopRecursive(numeroATrouver, Arrays.copyOfRange(tableauOrdonne, positionMilieu, tableauOrdonne.length), position + positionMilieu);
-
-
-        return -1;
+        }
+        return position;
     }
 }
