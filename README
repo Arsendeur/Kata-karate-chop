@@ -1,1 +1,4 @@
-This file was created by IntelliJ IDEA 12.0.4 for binding GitHub repository
+Kata du KarateChop
+
+Le but est de retourner l'index du nombre choisi dans un tableau ordonné.
+Si le nombre n'existe pas on retourne -1.
